@@ -968,7 +968,7 @@ public class StandardWrapper extends ContainerBase
      */
     @Override
     public synchronized void load() throws ServletException {
-        instance = loadServlet();
+        instance = loadServlet();//TODO:hello_chenchen:加载Servlet类
 
         if (!instanceInitialized) {
             initServlet(instance);
@@ -1029,7 +1029,7 @@ public class StandardWrapper extends ContainerBase
 
             InstanceManager instanceManager = ((StandardContext)getParent()).getInstanceManager();
             try {
-                servlet = (Servlet) instanceManager.newInstance(servletClass);
+                servlet = (Servlet) instanceManager.newInstance(servletClass);//TODO:hello_chenchen:实例化loadonstartup的类
             } catch (ClassCastException e) {
                 unavailable(null);
                 // Restore the context ClassLoader
@@ -1076,7 +1076,7 @@ public class StandardWrapper extends ContainerBase
                 singleThreadModel = true;
             }
 
-            initServlet(servlet);
+            initServlet(servlet);//TODO:hello_chenchen初始化loadonstartup类
 
             fireContainerEvent("load", this);
 
@@ -1109,7 +1109,7 @@ public class StandardWrapper extends ContainerBase
                 boolean success = false;
                 try {
                     Object[] args = new Object[] { facade };
-                    SecurityUtil.doAsPrivilege("init",
+                    SecurityUtil.doAsPrivilege("init",//TODO:hello_chenchen:调用Servlet类的init方法
                                                servlet,
                                                classType,
                                                args);
@@ -1121,7 +1121,7 @@ public class StandardWrapper extends ContainerBase
                     }
                 }
             } else {
-                servlet.init(facade);
+                servlet.init(facade);//TODO:hello_chenchen:调用Servlet类的init方法
             }
 
             instanceInitialized = true;

@@ -4555,7 +4555,7 @@ public class StandardContext extends ContainerBase
                 || (results[i] instanceof HttpSessionAttributeListener)) {
                 eventListeners.add(results[i]);
             }
-            if ((results[i] instanceof ServletContextListener)
+            if ((results[i] instanceof ServletContextListener)//TODO:hello_chenchen:添加Listener标签的处理
                 || (results[i] instanceof HttpSessionListener)) {
                 lifecycleListeners.add(results[i]);
             }
@@ -4576,7 +4576,7 @@ public class StandardContext extends ContainerBase
                 noPluggabilityListeners.add(lifecycleListener);
             }
         }
-        setApplicationLifecycleListeners(lifecycleListeners.toArray());
+        setApplicationLifecycleListeners(lifecycleListeners.toArray());//TODO:hello_chenchen存放Listener标签的数据在成员变量中
 
         // Send application start events
 
@@ -4587,7 +4587,7 @@ public class StandardContext extends ContainerBase
         getServletContext();
         context.setNewServletContextListenerAllowed(false);
 
-        Object instances[] = getApplicationLifecycleListeners();
+        Object instances[] = getApplicationLifecycleListeners();//TODO:hello_chenchen从成员变量中取出Listener标签的数据
         if (instances == null || instances.length == 0) {
             return ok;
         }
@@ -5106,7 +5106,7 @@ public class StandardContext extends ContainerBase
 
             // Load and initialize all "load on startup" servlets
             if (ok) {
-                if (!loadOnStartup(findChildren())){
+                if (!loadOnStartup(findChildren())){//TODO:hello_chenchen:web.xml文件中loadOnStartUp的处理的地方
                     log.error(sm.getString("standardContext.servletFail"));
                     ok = false;
                 }

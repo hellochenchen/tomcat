@@ -1100,11 +1100,11 @@ public class ContextConfig implements LifecycleListener {
         Set<WebXml> tomcatWebXml = new HashSet<>();
         tomcatWebXml.add(getTomcatWebXmlFragment(webXmlParser));
 
-        WebXml webXml = createWebXml();
+        WebXml webXml = createWebXml();//FIXME:hello_chenchen这里为什么要用createWebXml，而不直接new WebXml();
 
         // Parse context level web.xml
-        InputSource contextWebXml = getContextWebXmlSource();
-        if (!webXmlParser.parseWebXml(contextWebXml, webXml, false)) {
+        InputSource contextWebXml = getContextWebXmlSource();//TODO:hello_chenchen:如上注释所述Parse context level web.xml
+        if (!webXmlParser.parseWebXml(contextWebXml, webXml, false)) {//TODO:hello_chenchen:解析web.xml文件
             ok = false;
         }
 
@@ -1330,7 +1330,7 @@ public class ContextConfig implements LifecycleListener {
 
             // jsp-file gets passed to the JSP Servlet as an init-param
 
-            if (servlet.getLoadOnStartup() != null) {
+            if (servlet.getLoadOnStartup() != null) {//TODO:hello_chenchen:解析web.xml文件中的loadonstartup标签，并设置到wrapper中的字段
                 wrapper.setLoadOnStartup(servlet.getLoadOnStartup().intValue());
             }
             if (servlet.getEnabled() != null) {
@@ -1549,7 +1549,7 @@ public class ContextConfig implements LifecycleListener {
                 return entry.getWebXml();
             }
 
-            WebXml webXmlDefaultFragment = createWebXml();
+            WebXml webXmlDefaultFragment = createWebXml();//FIXME:hello_chenchen这里为什么要用createWebXml，而不直接new WebXml();
             webXmlDefaultFragment.setOverridable(true);
             // Set to distributable else every app will be prevented from being
             // distributable when the default fragment is merged with the main
@@ -1788,7 +1788,7 @@ public class ContextConfig implements LifecycleListener {
      * for it.
      * @return an input source to the context web.xml
      */
-    protected InputSource getContextWebXmlSource() {
+    protected InputSource getContextWebXmlSource() {//TODO:hello_chenchen获取Web.xml文件数据，转换成InputSource类
         InputStream stream = null;
         InputSource source = null;
         URL url = null;
