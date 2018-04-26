@@ -146,7 +146,7 @@ public final class ApplicationFilterChain implements FilterChain {
                         @Override
                         public Void run()
                             throws ServletException, IOException {
-                            internalDoFilter(req,res);
+                            internalDoFilter(req,res);//TODO:hello_chenchen: inside
                             return null;
                         }
                     }
@@ -228,7 +228,7 @@ public final class ApplicationFilterChain implements FilterChain {
                                            args,
                                            principal);
             } else {
-                servlet.service(request, response);
+                servlet.service(request, response);//TODO:hello_chenchen:终于进入到servlet的service
             }
         } catch (IOException | ServletException | RuntimeException e) {
             throw e;

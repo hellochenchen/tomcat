@@ -89,7 +89,7 @@ final class StandardWrapperValve
      * @exception ServletException if a servlet error occurred
      */
     @Override
-    public final void invoke(Request request, Response response)
+    public final void invoke(Request request, Response response)//TODO:hello_chenchen: 一个请求后，最终的调用点。进入filter
         throws IOException, ServletException {
 
         // Initialize local variables we may need
@@ -169,7 +169,7 @@ final class StandardWrapperValve
                 requestPathMB);
         // Create the filter chain for this request
         ApplicationFilterChain filterChain =
-                ApplicationFilterFactory.createFilterChain(request, wrapper, servlet);
+                ApplicationFilterFactory.createFilterChain(request, wrapper, servlet);//TODO:hello_chenchen: inside
 
         // Call the filter chain for this request
         // NOTE: This also calls the servlet's service() method
@@ -181,7 +181,7 @@ final class StandardWrapperValve
                         SystemLogHandler.startCapture();
                         if (request.isAsyncDispatching()) {
                             request.getAsyncContextInternal().doInternalDispatch();
-                        } else {
+                        } else {//TODO:hello_chenchen: 调用doFilter
                             filterChain.doFilter(request.getRequest(),
                                     response.getResponse());
                         }
